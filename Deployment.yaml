@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-deployment
+  namespace: ingress-nginx 
+  labels:
+    app: django1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: django1
+  template:
+    metadata:
+      labels:
+        app: django1
+    spec:
+      containers:
+      - name: my-image
+        image: raghavkhurana21/raghav2:1.0
+        ports:
+        - containerPort: 8000
+      # hostAliases:
+      # - hostnames:
+      #   - "raghavkhurana.com"
+      #   ip: "10.110.242.132"  
